@@ -1,0 +1,142 @@
+name: TransPerfect Vocabulary
+description: Controlled vocabulary covering TransPerfect's language services portfolio, the GlobalLink technology suite, translation workflow primitives, and the entities exposed by the GlobalLink Strings REST API.
+url: https://raw.githubusercontent.com/api-evangelist/transperfect/refs/heads/main/vocabulary/transperfect-vocabulary.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+
+domains:
+  - name: Language Services
+    description: Human-led translation, interpretation, transcription, and review services delivered by TransPerfect's global linguist network.
+    terms:
+      - name: Translation
+        description: Conversion of written source content into one or more target languages by human linguists, machine engines, or hybrid workflows.
+      - name: Localization
+        description: Adaptation of content, products, software, or campaigns to a target locale's linguistic, cultural, regulatory, and visual conventions.
+      - name: Transcreation
+        description: Creative adaptation of marketing or brand content that preserves intent, tone, and impact in a target locale rather than literal meaning.
+      - name: Interpretation
+        description: Real-time spoken conversion across languages, delivered on-site, over the phone, via video remote, or for live events.
+      - name: Transcription
+        description: Conversion of audio or video speech to written text, optionally combined with translation, captioning, or subtitling.
+      - name: Dubbing
+        description: Replacement of original-language voice tracks with target-language voice tracks in synchronized video production.
+      - name: Subtitling
+        description: On-screen target-language text rendering of source-language dialogue, often time-coded against video.
+      - name: Linguistic Quality Assurance
+        description: Structured review of translated assets against terminology, style, and locale-correctness criteria; commonly abbreviated LQA.
+      - name: Multicultural Marketing
+        description: Strategy and execution of campaigns targeting diaspora, bilingual, and multilingual audiences within a single market.
+
+  - name: GlobalLink Suite
+    description: TransPerfect's flagship technology platform composed of fifteen modular products spanning translation management, machine translation, app strings, CCMS, media, captioning, voice, real-time interpretation, and AI orchestration.
+    terms:
+      - name: GlobalLink TMS
+        description: Enterprise translation management system providing centralized workflow automation, project visibility, and integration to source systems.
+      - name: GlobalLink Web
+        description: Website localization and proxy-based multilingual delivery layer.
+      - name: GlobalLink Portal
+        description: Translation project intake, approval, and tracking interface for requesters and reviewers.
+      - name: GlobalLink Now
+        description: Unified AI marketplace routing content across proprietary and third-party machine translation engines.
+      - name: GlobalLink Strings
+        description: REST-API-driven mobile and software string localization platform; formerly Applanga.
+      - name: GlobalLink CCMS
+        description: Component content management system for structured authoring, reuse, and translation; built on Vasont.
+      - name: GlobalLink Media
+        description: Creative media localization workflow for marketing assets, banners, and rich media.
+      - name: GlobalLink Live
+        description: Real-time interpretation and captioning for meetings, conferences, and live events.
+      - name: GlobalLink TV
+        description: Video streaming localization service covering subtitling, dubbing, and audio description.
+      - name: GlobalLink Share
+        description: Secure file exchange platform for translation source and target assets.
+      - name: GlobalLink Scribe
+        description: Transcription, captioning, and subtitling automation workflow.
+      - name: GlobalLink Voice
+        description: Voiceover and audio production workflow.
+      - name: GlobalLink Translate and Review
+        description: Side-by-side translation editor with reviewer markup workflow.
+      - name: GlobalLink Write
+        description: AI-assisted source content generation in localization-ready form.
+      - name: Tower LLM
+        description: Model-agnostic AI orchestration and routing layer underpinning GlobalLink Now and Write.
+
+  - name: Translation Workflow
+    description: Primitives that recur across translation management systems regardless of vendor.
+    terms:
+      - name: Project
+        description: A scoped translation engagement with source content, target languages, deadlines, and assigned linguistic resources.
+      - name: Job
+        description: A discrete unit of work assigned to a linguist or engine within a project, scoped to one language pair and one asset.
+      - name: Source Language
+        description: The original language of content prior to translation.
+      - name: Target Language
+        description: The language into which source content is translated.
+      - name: Language Pair
+        description: An ordered pairing of source and target locales (for example, en-US to ja-JP).
+      - name: Locale
+        description: A combination of language and regional/cultural variant codified as a BCP-47 tag.
+      - name: Translation Memory
+        description: A database of previously translated segments reused to reduce cost, improve consistency, and accelerate delivery.
+      - name: Terminology
+        description: A managed glossary of preferred, prohibited, and locale-specific terms enforced across translations.
+      - name: Style Guide
+        description: A reference document codifying tone, register, formatting, and locale conventions for a client or brand.
+      - name: Segment
+        description: A translatable unit of text, typically a sentence or string, extracted from source content.
+      - name: Match Rate
+        description: A percentage indicating how closely a source segment matches an entry in translation memory.
+
+  - name: GlobalLink Strings API
+    description: Resources and operations exposed by the public REST API at api.globallinkstrings.com.
+    terms:
+      - name: Entry
+        description: A single translatable string keyed by identifier, language, and optional tag and branch context.
+      - name: Tag
+        description: A label applied to entries, screenshots, and other resources to scope filters, releases, and partial pulls.
+      - name: Screenshot
+        description: An uploaded image associated with one or more entries providing translators with visual context.
+      - name: Branch
+        description: A parallel version of a project enabling feature-branch localization workflows.
+      - name: Order
+        description: A request for human translation of selected entries placed against the connected vendor network.
+      - name: Webhook
+        description: A subscriber endpoint invoked when translation events such as entry updates or order completion occur.
+      - name: Personal Access Token
+        description: A user-scoped credential transmitted via the X-Personal-Access-Token header for write operations.
+      - name: API Token
+        description: A project-scoped Bearer credential whose prefix before the exclamation mark identifies the target project.
+
+  - name: AI and Data Services
+    description: Capabilities provided through DataForce and TransPerfect's AI offerings.
+    terms:
+      - name: Training Data
+        description: Human-curated text, audio, image, or video datasets used to train, fine-tune, or evaluate models.
+      - name: Annotation
+        description: Human labelling of data with categories, bounding boxes, transcripts, or relevance judgments.
+      - name: Human-in-the-Loop
+        description: Workflow in which human reviewers correct, validate, or rank machine outputs to improve downstream models.
+      - name: Machine Translation
+        description: Automated source-to-target language conversion produced by an MT engine without human intervention.
+      - name: Post-Editing
+        description: Human revision of machine translation output to meet publication quality standards.
+      - name: Quality Estimation
+        description: Automated scoring of translation output to predict adequacy and fluency without reference translations.
+
+  - name: Industries Served
+    description: Vertical practices in which TransPerfect maintains specialized teams and certified workflows.
+    terms:
+      - name: Life Sciences
+        description: Regulatory, clinical trial, pharmacovigilance, and medical device language services.
+      - name: Legal
+        description: Litigation support, eDiscovery, and contract translation services, including Reef eDiscovery review.
+      - name: Financial Services
+        description: Translation of regulated banking, insurance, and capital markets content.
+      - name: Gaming
+        description: Game localization, LQA, voiceover, and culturalization for publishers and developers.
+      - name: Media and Entertainment
+        description: Studio dubbing, subtitling, captioning, and audio description services.
+      - name: Retail and E-Commerce
+        description: Product copy, SEO, and shopping experience localization at scale.
+      - name: Government
+        description: Public-sector translation, interpretation, and accessibility services.

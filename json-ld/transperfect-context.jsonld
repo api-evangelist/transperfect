@@ -1,0 +1,102 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "tp": "https://transperfect.com/ns#",
+    "gl": "https://globallink.transperfect.com/ns#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "Organization": "schema:Organization",
+    "Service": "schema:Service",
+    "SoftwareApplication": "schema:SoftwareApplication",
+    "WebAPI": "schema:WebAPI",
+    "Language": "schema:Language",
+    "inLanguage": "schema:inLanguage",
+    "availableLanguage": "schema:availableLanguage",
+    "TranslationService": "tp:TranslationService",
+    "LocalizationService": "tp:LocalizationService",
+    "InterpretationService": "tp:InterpretationService",
+    "TranscriptionService": "tp:TranscriptionService",
+    "MachineTranslationEngine": "tp:MachineTranslationEngine",
+    "TranslationMemory": "tp:TranslationMemory",
+    "Glossary": "tp:Glossary",
+    "StyleGuide": "tp:StyleGuide",
+    "GlobalLinkModule": "gl:Module",
+    "GlobalLinkConnector": "gl:Connector",
+    "Project": {
+      "@id": "gl:Project",
+      "@type": "@id"
+    },
+    "sourceLanguage": {
+      "@id": "tp:sourceLanguage",
+      "@type": "@id"
+    },
+    "targetLanguage": {
+      "@id": "tp:targetLanguage",
+      "@type": "@id"
+    },
+    "languagePair": "tp:languagePair",
+    "locale": {
+      "@id": "schema:Language",
+      "@type": "@id"
+    },
+    "Entry": "gl:Entry",
+    "entryKey": "gl:entryKey",
+    "entryValue": "gl:entryValue",
+    "Tag": {
+      "@id": "gl:Tag",
+      "@type": "@id"
+    },
+    "Screenshot": "gl:Screenshot",
+    "Branch": "gl:Branch",
+    "Order": "gl:Order",
+    "Webhook": "gl:Webhook",
+    "ApiToken": "gl:ApiToken",
+    "PersonalAccessToken": "gl:PersonalAccessToken",
+    "matchRate": "tp:matchRate",
+    "segment": "tp:Segment",
+    "wordCount": "tp:wordCount",
+    "deadline": {
+      "@id": "schema:expectedArrivalUntil",
+      "@type": "schema:DateTime"
+    },
+    "status": "schema:status",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "industry": "schema:industry",
+    "LifeSciences": "tp:LifeSciences",
+    "Legal": "tp:Legal",
+    "FinancialServices": "tp:FinancialServices",
+    "Gaming": "tp:Gaming",
+    "MediaEntertainment": "tp:MediaEntertainment",
+    "Retail": "tp:Retail",
+    "Government": "tp:Government",
+    "TowerLLM": "gl:TowerLLM",
+    "GlobalLinkTMS": "gl:TMS",
+    "GlobalLinkWeb": "gl:Web",
+    "GlobalLinkPortal": "gl:Portal",
+    "GlobalLinkNow": "gl:Now",
+    "GlobalLinkStrings": "gl:Strings",
+    "GlobalLinkCCMS": "gl:CCMS",
+    "GlobalLinkMedia": "gl:Media",
+    "GlobalLinkLive": "gl:Live",
+    "GlobalLinkTV": "gl:TV",
+    "GlobalLinkShare": "gl:Share",
+    "GlobalLinkScribe": "gl:Scribe",
+    "GlobalLinkVoice": "gl:Voice",
+    "GlobalLinkTranslateReview": "gl:TranslateReview",
+    "GlobalLinkWrite": "gl:Write",
+    "DataForce": "tp:DataForce",
+    "MediaNEXT": "tp:MediaNEXT",
+    "Reef": "tp:Reef",
+    "Vasont": "tp:Vasont",
+    "TrialInteractive": "tp:TrialInteractive"
+  }
+}

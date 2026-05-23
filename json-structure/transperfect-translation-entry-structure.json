@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-structure.org/draft/2026-01/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/transperfect/refs/heads/main/json-structure/transperfect-translation-entry-structure.json",
+  "title": "GlobalLink Translation Entry",
+  "description": "Logical structure describing a translatable string entry exposed by the GlobalLink Strings REST API. Captures the identifier, locale, content, workflow state, contextual references, and audit fields used by mobile and software localization pipelines.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "key",
+      "type": "string",
+      "required": true,
+      "description": "Stable identifier for the translatable string within the owning project."
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "required": true,
+      "description": "BCP-47 locale tag identifying the language of the entry value."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": true,
+      "description": "Source or translated string content for the entry."
+    },
+    {
+      "name": "branch",
+      "type": "string",
+      "required": false,
+      "description": "Branch identifier scoping the entry when the project uses branching workflows."
+    },
+    {
+      "name": "tags",
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Labels associated with the entry for filtering pushes, pulls, releases, and orders."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Developer note or contextual description shown to translators."
+    },
+    {
+      "name": "screenshotIds",
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "References to uploaded screenshots that anchor the entry visually."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "enum": ["draft", "in_translation", "in_review", "translated", "published", "archived"],
+      "description": "Workflow state of the entry within the translation pipeline."
+    },
+    {
+      "name": "characterLimit",
+      "type": "integer",
+      "required": false,
+      "description": "Optional maximum character count enforced on the translated value."
+    },
+    {
+      "name": "plural",
+      "type": "boolean",
+      "description": "Indicates whether the entry uses plural-form variants."
+    },
+    {
+      "name": "pluralForms",
+      "type": "object",
+      "fields": [
+        { "name": "zero", "type": "string", "required": false },
+        { "name": "one", "type": "string", "required": false },
+        { "name": "two", "type": "string", "required": false },
+        { "name": "few", "type": "string", "required": false },
+        { "name": "many", "type": "string", "required": false },
+        { "name": "other", "type": "string", "required": false }
+      ],
+      "description": "Plural variant strings keyed by CLDR plural category."
+    },
+    {
+      "name": "createdAt",
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the entry was created."
+    },
+    {
+      "name": "updatedAt",
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the entry was last modified."
+    },
+    {
+      "name": "metadata",
+      "type": "object",
+      "description": "Free-form integrator metadata attached to the entry."
+    }
+  ]
+}

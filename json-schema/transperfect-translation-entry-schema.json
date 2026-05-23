@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/transperfect/refs/heads/main/json-schema/transperfect-translation-entry-schema.json",
+  "title": "GlobalLink Translation Entry",
+  "description": "Schema describing a translatable string entry as exposed by the GlobalLink Strings REST API at api.globallinkstrings.com/v1/api.",
+  "type": "object",
+  "required": ["key", "language", "value"],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Stable identifier for the translatable string within a project."
+    },
+    "language": {
+      "type": "string",
+      "description": "BCP-47 language tag identifying the locale of this entry value (for example, en-US, ja-JP, de-DE).",
+      "pattern": "^[a-zA-Z]{2,3}(-[a-zA-Z]{4})?(-[a-zA-Z]{2}|-[0-9]{3})?(-[a-zA-Z0-9]{5,8}|-[0-9][a-zA-Z0-9]{3})*$"
+    },
+    "value": {
+      "type": "string",
+      "description": "Translated or source string content for the entry."
+    },
+    "branch": {
+      "type": ["string", "null"],
+      "description": "Optional branch identifier scoping the entry within a branching project."
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags associated with the entry, used to filter pushes, pulls, and orders.",
+      "items": { "type": "string" }
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Human-readable description or developer note providing context for translators."
+    },
+    "screenshotIds": {
+      "type": "array",
+      "description": "References to screenshots that provide visual context for this entry.",
+      "items": { "type": "string" }
+    },
+    "status": {
+      "type": "string",
+      "description": "Current state of the entry in the translation workflow.",
+      "enum": ["draft", "in_translation", "in_review", "translated", "published", "archived"]
+    },
+    "characterLimit": {
+      "type": ["integer", "null"],
+      "description": "Optional maximum character count enforced for the translated value.",
+      "minimum": 0
+    },
+    "plural": {
+      "type": "boolean",
+      "description": "Whether the entry uses plural form variants.",
+      "default": false
+    },
+    "pluralForms": {
+      "type": "object",
+      "description": "Plural variant values keyed by CLDR plural category.",
+      "additionalProperties": { "type": "string" },
+      "propertyNames": {
+        "enum": ["zero", "one", "two", "few", "many", "other"]
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the entry was first created in the project."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the most recent modification to the entry."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Arbitrary integrator-supplied metadata associated with the entry.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
