@@ -1,145 +1,160 @@
 aid: transperfect
 name: TransPerfect
-description: TransPerfect is the world's largest privately held provider of language and AI services, delivering translation, localization, interpretation, AI training data, and content technology through the GlobalLink platform suite, DataForce data services, and a global production network spanning 200+ languages and 160+ offices, with 2025 billed revenues of $1.32 billion serving over 6,000 organizations including 90% of the Fortune 500.
+description: TransPerfect is the world's largest privately held provider of language
+  and AI services, delivering translation, localization, interpretation, AI training
+  data, and content technology through the GlobalLink platform suite, DataForce data
+  services, and a global production network spanning 200+ languages and 160+ offices,
+  with 2025 billed revenues of $1.32 billion serving over 6,000 organizations including
+  90% of the Fortune 500.
 type: Index
 position: Producer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Translation
-  - Localization
-  - Language Services
-  - Translation Management
-  - Machine Translation
-  - AI Translation
-  - Interpretation
-  - Content Localization
-  - Mobile App Localization
-  - Globalization
-  - Multilingual
+- Translation
+- Localization
+- Language Services
+- Translation Management
+- Machine Translation
+- AI Translation
+- Interpretation
+- Content Localization
+- Mobile App Localization
+- Globalization
+- Multilingual
 created: '2026-05-23'
 modified: '2026-05-23'
 url: https://raw.githubusercontent.com/api-evangelist/transperfect/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: transperfect:globallink-strings
-    name: GlobalLink Strings API
-    description: REST API (formerly Applanga) for mobile app and software string localization, supporting upload/download of source and translated entries, tags, screenshots, projects, branches, orders, and webhooks, with SDKs for iOS, Android, React Native, Flutter, Unity, and SwiftUI plus a Python CLI for CI/CD push and pull workflows.
-    humanURL: https://www.applanga.com/docs/integration-documentation/api
-    baseURL: https://api.globallinkstrings.com/v1/api
-    tags:
-      - String Localization
-      - Mobile Localization
-      - Software Localization
-      - REST API
-    properties:
-      - type: Documentation
-        url: https://www.applanga.com/docs
-      - type: APIReference
-        url: https://www.applanga.com/docs/integration-documentation/api
-      - type: CLI
-        url: https://www.applanga.com/docs/integration-documentation/cli
-      - type: SDK
-        url: https://github.com/applanga/sdk-ios
-      - type: SDK
-        url: https://github.com/applanga/sdk-android
-      - type: SDK
-        url: https://github.com/applanga/sdk-unity
-      - type: SDK
-        url: https://github.com/applanga/sdk-swiftui
-      - type: SDK
-        url: https://github.com/applanga/applanga-react-native
-      - type: SDK
-        url: https://github.com/applanga/applanga_flutter
-      - type: SourceCode
-        url: https://github.com/applanga/applanga-cli
-      - type: SourceCode
-        url: https://github.com/applanga/setup-applanga-cli
-      - type: SourceCode
-        url: https://github.com/applanga/Sample-Apps
-      - type: Webhooks
-        url: https://www.applanga.com/docs/integration-documentation/api
-    x-authentication:
-      type: Bearer Token
-      description: Authorization Bearer apiToken plus X-Personal-Access-Token header for write operations, with app query parameter identifying the project.
-    x-limits:
-      maxBodySize: 50MB
-      compression: GZIP via Accept-Encoding
-    x-resources:
-      - Entries
-      - Languages
-      - Tags
-      - Screenshots
-      - Projects
-      - Branches
-      - Orders
-      - Webhooks
-    x-formats:
-      - Android XML
-      - iOS .strings
-      - iOS .stringsdict
-      - JSON
-      - React JSON
-      - Angular JSON
-      - YAML
-      - CSV
-      - XLIFF
-      - PO
-      - Properties
-  - aid: transperfect:globallink-drupal
-    name: GlobalLink Drupal Connector
-    description: Open-source PHP Drupal module exposing GlobalLink translation submission and retrieval inside Drupal sites, with sub-modules for blocks, entities, menus, taxonomy, and webforms, configured via GlobalLink credentials and Drupal-to-GlobalLink locale mapping.
-    humanURL: https://github.com/TransPerfect/globallink
-    tags:
-      - Drupal
-      - CMS Connector
-      - PHP
-      - Translation Workflow
-    properties:
-      - type: SourceCode
-        url: https://github.com/TransPerfect/globallink
-      - type: License
-        url: https://github.com/TransPerfect/globallink
-    x-language: PHP
-    x-status: Legacy
+- aid: transperfect:globallink-strings
+  name: GlobalLink Strings API
+  description: REST API (formerly Applanga) for mobile app and software string localization,
+    supporting upload/download of source and translated entries, tags, screenshots,
+    projects, branches, orders, and webhooks, with SDKs for iOS, Android, React Native,
+    Flutter, Unity, and SwiftUI plus a Python CLI for CI/CD push and pull workflows.
+  humanURL: https://www.applanga.com/docs/integration-documentation/api
+  baseURL: https://api.globallinkstrings.com/v1/api
+  tags:
+  - String Localization
+  - Mobile Localization
+  - Software Localization
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://www.applanga.com/docs
+  - type: APIReference
+    url: https://www.applanga.com/docs/integration-documentation/api
+  - type: CLI
+    url: https://www.applanga.com/docs/integration-documentation/cli
+  - type: SDK
+    url: https://github.com/applanga/sdk-ios
+  - type: SDK
+    url: https://github.com/applanga/sdk-android
+  - type: SDK
+    url: https://github.com/applanga/sdk-unity
+  - type: SDK
+    url: https://github.com/applanga/sdk-swiftui
+  - type: SDK
+    url: https://github.com/applanga/applanga-react-native
+  - type: SDK
+    url: https://github.com/applanga/applanga_flutter
+  - type: SourceCode
+    url: https://github.com/applanga/applanga-cli
+  - type: SourceCode
+    url: https://github.com/applanga/setup-applanga-cli
+  - type: SourceCode
+    url: https://github.com/applanga/Sample-Apps
+  - type: Webhooks
+    url: https://www.applanga.com/docs/integration-documentation/api
+  - url: graphql/transperfect-graphql.md
+    type: GraphQL
+  x-authentication:
+    type: Bearer Token
+    description: Authorization Bearer apiToken plus X-Personal-Access-Token header
+      for write operations, with app query parameter identifying the project.
+  x-limits:
+    maxBodySize: 50MB
+    compression: GZIP via Accept-Encoding
+  x-resources:
+  - Entries
+  - Languages
+  - Tags
+  - Screenshots
+  - Projects
+  - Branches
+  - Orders
+  - Webhooks
+  x-formats:
+  - Android XML
+  - iOS .strings
+  - iOS .stringsdict
+  - JSON
+  - React JSON
+  - Angular JSON
+  - YAML
+  - CSV
+  - XLIFF
+  - PO
+  - Properties
+- aid: transperfect:globallink-drupal
+  name: GlobalLink Drupal Connector
+  description: Open-source PHP Drupal module exposing GlobalLink translation submission
+    and retrieval inside Drupal sites, with sub-modules for blocks, entities, menus,
+    taxonomy, and webforms, configured via GlobalLink credentials and Drupal-to-GlobalLink
+    locale mapping.
+  humanURL: https://github.com/TransPerfect/globallink
+  tags:
+  - Drupal
+  - CMS Connector
+  - PHP
+  - Translation Workflow
+  properties:
+  - type: SourceCode
+    url: https://github.com/TransPerfect/globallink
+  - type: License
+    url: https://github.com/TransPerfect/globallink
+  x-language: PHP
+  x-status: Legacy
 common:
-  - type: Website
-    url: https://www.transperfect.com/
-  - type: GlobalLinkSuite
-    url: https://globallink.transperfect.com/
-  - type: Products
-    url: https://globallink.transperfect.com/products
-  - type: Blog
-    url: https://www.transperfect.com/blog
-  - type: News
-    url: https://www.transperfect.com/news
-  - type: Leadership
-    url: https://www.transperfect.com/about/leadership
-  - type: About
-    url: https://www.transperfect.com/about
-  - type: ContactSales
-    url: https://www.transperfect.com/contact-us
-  - type: Careers
-    url: https://www.transperfect.com/careers
-  - type: GitHub
-    url: https://github.com/TransPerfect
-  - type: AppsGitHub
-    url: https://github.com/applanga
-    description: Applanga / GlobalLink Strings GitHub organization hosting the actively maintained SDK and CLI portfolio.
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/transperfect
-  - type: Twitter
-    url: https://twitter.com/transperfect
-  - type: YouTube
-    url: https://www.youtube.com/user/TransPerfectVideo
-  - type: Vocabulary
-    url: vocabulary/transperfect-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/transperfect-context.jsonld
-  - type: JSONSchema
-    url: json-schema/transperfect-translation-entry-schema.json
-  - type: JSONStructure
-    url: json-structure/transperfect-translation-entry-structure.json
+- type: Website
+  url: https://www.transperfect.com/
+- type: GlobalLinkSuite
+  url: https://globallink.transperfect.com/
+- type: Products
+  url: https://globallink.transperfect.com/products
+- type: Blog
+  url: https://www.transperfect.com/blog
+- type: News
+  url: https://www.transperfect.com/news
+- type: Leadership
+  url: https://www.transperfect.com/about/leadership
+- type: About
+  url: https://www.transperfect.com/about
+- type: ContactSales
+  url: https://www.transperfect.com/contact-us
+- type: Careers
+  url: https://www.transperfect.com/careers
+- type: GitHub
+  url: https://github.com/TransPerfect
+- type: AppsGitHub
+  url: https://github.com/applanga
+  description: Applanga / GlobalLink Strings GitHub organization hosting the actively
+    maintained SDK and CLI portfolio.
+- type: LinkedIn
+  url: https://www.linkedin.com/company/transperfect
+- type: Twitter
+  url: https://twitter.com/transperfect
+- type: YouTube
+  url: https://www.youtube.com/user/TransPerfectVideo
+- type: Vocabulary
+  url: vocabulary/transperfect-vocabulary.yml
+- type: JSONLD
+  url: json-ld/transperfect-context.jsonld
+- type: JSONSchema
+  url: json-schema/transperfect-translation-entry-schema.json
+- type: JSONStructure
+  url: json-structure/transperfect-translation-entry-structure.json
 x-company:
   founded: 1992
   headquarters: New York, NY
@@ -155,117 +170,129 @@ x-company:
   clients: 10,000+ (including 90% of Fortune 500)
   globalLinkUsers: 6,000+ organizations
   languages: 200+
-  positioning: "Intelligent Performance: However you define success, TransPerfect delivers it with technology and expertise — any market, any language."
+  positioning: 'Intelligent Performance: However you define success, TransPerfect
+    delivers it with technology and expertise — any market, any language.'
 x-platforms:
-  - name: GlobalLink
-    description: TransPerfect's flagship translation and localization technology suite spanning 15 modules.
-    modules:
-      - GlobalLink TMS
-      - GlobalLink Web
-      - GlobalLink Portal
-      - GlobalLink Now
-      - GlobalLink Strings
-      - GlobalLink CCMS
-      - GlobalLink Media
-      - GlobalLink Live
-      - GlobalLink TV
-      - GlobalLink Share
-      - GlobalLink Scribe
-      - GlobalLink Voice
-      - GlobalLink Translate & Review
-      - GlobalLink Write
-      - Tower LLM
-    awards: 24 G2 awards across 12 categories (May 2026)
-    integrations: "100+ pre-built connectors with a conversational MCP interface" across CMS, DAM, CRM, PIM, e-commerce, and development platforms.
-  - name: DataForce
-    description: AI training data, annotation, and human-in-the-loop services for model builders.
-  - name: Trial Interactive
-    description: eClinical solutions for life sciences trials.
-  - name: Vasont CCMS
-    description: Component content management system for structured content authoring and translation.
-  - name: Reef
-    description: eDiscovery review platform; Reef Review 4.0 added AI-enabled review tooling in March 2026.
-  - name: MediaNEXT
-    description: Broadcast and media localization platform for studios.
-  - name: TransPerfect Legal
-    description: Litigation support, eDiscovery, and legal language services.
-  - name: TransPerfect Life Sciences
-    description: Regulatory, clinical, and pharmacovigilance language services.
-  - name: TransPerfect Games
-    description: QA, LQA, and localization services for game publishers.
-  - name: Semantix
-    description: Acquired Nordic language services provider.
-  - name: Unbabel
-    description: Acquired (August 2026) AI language operations platform.
+- name: GlobalLink
+  description: TransPerfect's flagship translation and localization technology suite
+    spanning 15 modules.
+  modules:
+  - GlobalLink TMS
+  - GlobalLink Web
+  - GlobalLink Portal
+  - GlobalLink Now
+  - GlobalLink Strings
+  - GlobalLink CCMS
+  - GlobalLink Media
+  - GlobalLink Live
+  - GlobalLink TV
+  - GlobalLink Share
+  - GlobalLink Scribe
+  - GlobalLink Voice
+  - GlobalLink Translate & Review
+  - GlobalLink Write
+  - Tower LLM
+  awards: 24 G2 awards across 12 categories (May 2026)
+  integrations: 100+ pre-built connectors with a conversational MCP interface across
+    CMS, DAM, CRM, PIM, e-commerce, and development platforms.
+- name: DataForce
+  description: AI training data, annotation, and human-in-the-loop services for model
+    builders.
+- name: Trial Interactive
+  description: eClinical solutions for life sciences trials.
+- name: Vasont CCMS
+  description: Component content management system for structured content authoring
+    and translation.
+- name: Reef
+  description: eDiscovery review platform; Reef Review 4.0 added AI-enabled review
+    tooling in March 2026.
+- name: MediaNEXT
+  description: Broadcast and media localization platform for studios.
+- name: TransPerfect Legal
+  description: Litigation support, eDiscovery, and legal language services.
+- name: TransPerfect Life Sciences
+  description: Regulatory, clinical, and pharmacovigilance language services.
+- name: TransPerfect Games
+  description: QA, LQA, and localization services for game publishers.
+- name: Semantix
+  description: Acquired Nordic language services provider.
+- name: Unbabel
+  description: Acquired (August 2026) AI language operations platform.
 x-services:
   translation:
-    - Document Translation
-    - Email and Chat Translation
-    - Transcription
-    - Video and Audio Translation
-    - AI and Machine Translation
-    - Labeling and Regulatory Consulting
+  - Document Translation
+  - Email and Chat Translation
+  - Transcription
+  - Video and Audio Translation
+  - AI and Machine Translation
+  - Labeling and Regulatory Consulting
   localization:
-    - Website Localization
-    - Software and Mobile App Localization
-    - QA, Testing and Accessibility
-    - International SEO/SEM
-    - Multicultural Marketing
+  - Website Localization
+  - Software and Mobile App Localization
+  - QA, Testing and Accessibility
+  - International SEO/SEM
+  - Multicultural Marketing
   creative:
-    - Content Creation and Strategy
-    - Global Campaign Management
-    - Video Production
-    - Creative and Explainer Videos
-    - Event Services
+  - Content Creation and Strategy
+  - Global Campaign Management
+  - Video Production
+  - Creative and Explainer Videos
+  - Event Services
   interpretation:
-    - On-site Interpretation
-    - Over-the-Phone Interpretation
-    - Video Remote Interpretation
-    - Real-time Event Interpretation
+  - On-site Interpretation
+  - Over-the-Phone Interpretation
+  - Video Remote Interpretation
+  - Real-time Event Interpretation
   staffing:
-    - Multilingual Staffing
-    - Contact Center Support / BPO
+  - Multilingual Staffing
+  - Contact Center Support / BPO
   training:
-    - Language and Cultural Training
-    - Digital Learning
+  - Language and Cultural Training
+  - Digital Learning
 x-industries:
-  - Life Sciences
-  - Legal
-  - Retail and E-Commerce
-  - Finance and Banking
-  - Travel and Hospitality
-  - Technology
-  - Gaming
-  - Media and Entertainment
-  - Digital Marketing and Advertising
-  - Healthcare
-  - Manufacturing
-  - Energy and Mining
-  - Food and Beverage
-  - Government
-  - Education
-  - Non-Profit
-  - Automotive
+- Life Sciences
+- Legal
+- Retail and E-Commerce
+- Finance and Banking
+- Travel and Hospitality
+- Technology
+- Gaming
+- Media and Entertainment
+- Digital Marketing and Advertising
+- Healthcare
+- Manufacturing
+- Energy and Mining
+- Food and Beverage
+- Government
+- Education
+- Non-Profit
+- Automotive
 x-recent-news:
-  - date: '2026-08'
-    event: Acquired Unbabel to strengthen language AI capabilities.
-  - date: '2026-05'
-    event: GlobalLink won 24 G2 awards across 12 categories.
-  - date: '2026-04'
-    event: Acquired Italian production studio Studio Emme.
-  - date: '2026-03'
-    event: 2025 billed revenues announced at $1.32 billion, +7% YoY; Reef Review 4.0 released with AI eDiscovery; TransPerfect Legal ranked #1 by National Law Journal readers in six categories.
-  - date: '2026-02'
-    event: Acquired German post-production studio Omnimago; NAMMBA selected TransPerfect as preferred language partner.
-  - date: '2025-09'
-    event: Launched five new GlobalLink integrations.
+- date: 2026-08
+  event: Acquired Unbabel to strengthen language AI capabilities.
+- date: 2026-05
+  event: GlobalLink won 24 G2 awards across 12 categories.
+- date: 2026-04
+  event: Acquired Italian production studio Studio Emme.
+- date: 2026-03
+  event: 2025 billed revenues announced at $1.32 billion, +7% YoY; Reef Review 4.0
+    released with AI eDiscovery; TransPerfect Legal ranked
+- date: 2026-02
+  event: Acquired German post-production studio Omnimago; NAMMBA selected TransPerfect
+    as preferred language partner.
+- date: 2025-09
+  event: Launched five new GlobalLink integrations.
 x-absences:
-  - No unified TransPerfect developer portal at transperfect.com.
-  - No public OpenAPI specification for GlobalLink TMS, Web, Portal, CCMS, Now, Media, Live, TV, Share, Scribe, Voice, Translate & Review, Write, or Tower LLM.
-  - No public OpenAPI specification despite documented REST API for GlobalLink Strings (legacy Applanga endpoints).
-  - No published REST/GraphQL endpoint catalog for MediaNEXT broadcast platform.
-  - No public pricing pages; all commercial engagement runs through sales contact.
-  - No status page or system health portal publicly indexed.
-  - No RSS feed surfaced on the corporate blog.
-  - TransPerfect/globallink GitHub repository last updated 2016; main TransPerfect GitHub org has only one public repository.
-  - No published AsyncAPI, webhook schema reference, or event catalog for any GlobalLink module despite the API exposing a webhooks resource.
+- No unified TransPerfect developer portal at transperfect.com.
+- No public OpenAPI specification for GlobalLink TMS, Web, Portal, CCMS, Now, Media,
+  Live, TV, Share, Scribe, Voice, Translate & Review, Write, or Tower LLM.
+- No public OpenAPI specification despite documented REST API for GlobalLink Strings
+  (legacy Applanga endpoints).
+- No published REST/GraphQL endpoint catalog for MediaNEXT broadcast platform.
+- No public pricing pages; all commercial engagement runs through sales contact.
+- No status page or system health portal publicly indexed.
+- No RSS feed surfaced on the corporate blog.
+- TransPerfect/globallink GitHub repository last updated 2016; main TransPerfect GitHub
+  org has only one public repository.
+- No published AsyncAPI, webhook schema reference, or event catalog for any GlobalLink
+  module despite the API exposing a webhooks resource.

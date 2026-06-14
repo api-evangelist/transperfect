@@ -1,0 +1,751 @@
+"""
+TransPerfect / GlobalLink GraphQL Schema
+Conceptual data model derived from the GlobalLink Strings REST API
+(https://www.applanga.com/docs/integration-documentation/api),
+GlobalLink platform module documentation, and translation-industry
+standard entities (TMX, XLIFF, ISO 639 language codes).
+No native GraphQL endpoint is currently published by TransPerfect.
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar URI
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum ProjectStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  ARCHIVED
+}
+
+enum JobStatus {
+  CREATED
+  QUEUED
+  IN_PROGRESS
+  IN_REVIEW
+  COMPLETED
+  DELIVERED
+  CANCELLED
+  ON_HOLD
+}
+
+enum WorkflowStep {
+  MACHINE_TRANSLATION
+  HUMAN_TRANSLATION
+  EDITING
+  PROOFREADING
+  REVIEW
+  DTP
+  QA
+  DELIVERY
+}
+
+enum ServiceType {
+  TRANSLATION
+  LOCALIZATION
+  INTERPRETATION
+  TRANSCRIPTION
+  SUBTITLING
+  VOICE_OVER
+  MACHINE_TRANSLATION
+  POST_EDITING
+  TERMINOLOGY_MANAGEMENT
+  CONTENT_CREATION
+  DTP
+}
+
+enum Domain {
+  LEGAL
+  LIFE_SCIENCES
+  MEDICAL
+  FINANCIAL
+  TECHNOLOGY
+  MARKETING
+  GAMING
+  MEDIA_ENTERTAINMENT
+  RETAIL_ECOMMERCE
+  MANUFACTURING
+  ENERGY
+  EDUCATION
+  GOVERNMENT
+  GENERAL
+}
+
+enum QuoteStatus {
+  PENDING
+  READY
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum DocumentFormat {
+  XLIFF
+  TMX
+  PO
+  ANDROID_XML
+  IOS_STRINGS
+  IOS_STRINGSDICT
+  JSON
+  REACT_JSON
+  ANGULAR_JSON
+  YAML
+  CSV
+  PROPERTIES
+  DOCX
+  XLSX
+  PPTX
+  PDF
+  HTML
+  IDML
+  DITA
+  MARKDOWN
+}
+
+enum QACheckType {
+  SPELL_CHECK
+  GRAMMAR
+  CONSISTENCY
+  TERMINOLOGY
+  FORMATTING
+  COMPLETENESS
+  FLUENCY
+  ADEQUACY
+}
+
+enum GlossaryEntryStatus {
+  APPROVED
+  PENDING
+  DEPRECATED
+  DO_NOT_TRANSLATE
+}
+
+# ---------------------------------------------------------------------------
+# Core Language types
+# ---------------------------------------------------------------------------
+
+"""An ISO 639-1/639-2 language with BCP 47 locale tag."""
+type Language {
+  code: String!
+  name: String!
+  nativeName: String
+  locale: String!
+  isRightToLeft: Boolean!
+  region: String
+  script: String
+}
+
+"""A directional translation pair between two languages."""
+type LanguagePair {
+  id: ID!
+  source: Language!
+  target: Language!
+  machineTranslationEngine: String
+  tmCoverage: Float
+  glossary: Glossary
+}
+
+# ---------------------------------------------------------------------------
+# Glossary / Terminology
+# ---------------------------------------------------------------------------
+
+"""A term entry within a glossary or termbase."""
+type GlossaryTerm {
+  id: ID!
+  sourceTerm: String!
+  sourceLanguage: Language!
+  targetTerm: String!
+  targetLanguage: Language!
+  definition: String
+  domain: Domain
+  partOfSpeech: String
+  context: String
+  notes: String
+  status: GlossaryEntryStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  approvedBy: Translator
+}
+
+"""A collection of approved terminology for a client or domain."""
+type Glossary {
+  id: ID!
+  name: String!
+  description: String
+  domain: Domain
+  languagePairs: [LanguagePair!]!
+  terms: [GlossaryTerm!]!
+  termCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+Enterprise termbase (TermBase eXchange-compatible) housing multi-language
+terminology with concept-level grouping and metadata.
+"""
+type TermBase {
+  id: ID!
+  name: String!
+  description: String
+  languages: [Language!]!
+  glossaries: [Glossary!]!
+  conceptCount: Int!
+  format: String
+  exportUrl: URI
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Translation Memory
+# ---------------------------------------------------------------------------
+
+"""
+A Translation Memory unit (segment pair) stored in TMX format.
+"""
+type TMUnit {
+  id: ID!
+  sourceSegment: String!
+  targetSegment: String!
+  sourceLanguage: Language!
+  targetLanguage: Language!
+  matchScore: Float
+  domain: Domain
+  createdAt: DateTime!
+  lastUsedAt: DateTime
+  usageCount: Int!
+  metadata: JSON
+}
+
+"""
+A Translation Memory eXchange (TMX) file or virtual memory store
+used to leverage previously translated content.
+"""
+type TMXMemory {
+  id: ID!
+  name: String!
+  description: String
+  languagePairs: [LanguagePair!]!
+  unitCount: Int!
+  fileSizeBytes: Int
+  downloadUrl: URI
+  units(limit: Int, offset: Int): [TMUnit!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# People / Vendors
+# ---------------------------------------------------------------------------
+
+"""A human linguist performing translation or review work."""
+type Translator {
+  id: ID!
+  name: String!
+  email: String
+  languages: [Language!]!
+  languagePairs: [LanguagePair!]!
+  domains: [Domain!]!
+  certifications: [String!]
+  averageQualityScore: Float
+  jobsCompleted: Int!
+  activeJobs: [TranslationJob!]!
+}
+
+"""A human linguist performing quality review of translated content."""
+type Reviewer {
+  id: ID!
+  name: String!
+  email: String
+  languages: [Language!]!
+  languagePairs: [LanguagePair!]!
+  domains: [Domain!]!
+  certifications: [String!]
+  averageQualityScore: Float
+  reviewsCompleted: Int!
+}
+
+# ---------------------------------------------------------------------------
+# Documents
+# ---------------------------------------------------------------------------
+
+"""A source-language document submitted for translation."""
+type SourceDocument {
+  id: ID!
+  name: String!
+  format: DocumentFormat!
+  language: Language!
+  fileSizeBytes: Int!
+  wordCount: Int!
+  characterCount: Int
+  segmentCount: Int
+  url: URI!
+  checksum: String
+  uploadedAt: DateTime!
+  project: Project
+  translatedDocuments: [TranslatedDocument!]!
+  tags: [String!]
+  metadata: JSON
+}
+
+"""A translated document produced from a SourceDocument."""
+type TranslatedDocument {
+  id: ID!
+  name: String!
+  format: DocumentFormat!
+  sourceDocument: SourceDocument!
+  language: Language!
+  fileSizeBytes: Int
+  wordCount: Int
+  translatedWordCount: Int
+  url: URI
+  translatedAt: DateTime
+  deliveredAt: DateTime
+  translator: Translator
+  reviewer: Reviewer
+  qualityScore: QualityScore
+  metadata: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Quality
+# ---------------------------------------------------------------------------
+
+"""A QA check result for a specific category."""
+type QACheckResult {
+  checkType: QACheckType!
+  passed: Boolean!
+  issueCount: Int!
+  errorCount: Int!
+  warningCount: Int!
+  notes: String
+}
+
+"""Aggregate quality scoring for a translated document or job."""
+type QualityScore {
+  id: ID!
+  score: Float!
+  maxScore: Float!
+  percentage: Float!
+  mqmScore: Float
+  bleuScore: Float
+  terScore: Float
+  humanEvalScore: Float
+  checks: [QACheckResult!]!
+  evaluatedAt: DateTime!
+  evaluatedBy: Reviewer
+  document: TranslatedDocument
+  job: TranslationJob
+  notes: String
+}
+
+# ---------------------------------------------------------------------------
+# Workflow
+# ---------------------------------------------------------------------------
+
+"""A single step in a translation workflow pipeline."""
+type WorkflowStepDefinition {
+  order: Int!
+  step: WorkflowStep!
+  assignedTo: Translator
+  reviewer: Reviewer
+  turnaroundHours: Int
+  isRequired: Boolean!
+  instructions: String
+}
+
+"""
+A reusable workflow template defining the ordered steps for
+translating and reviewing content.
+"""
+type Workflow {
+  id: ID!
+  name: String!
+  description: String
+  steps: [WorkflowStepDefinition!]!
+  serviceLevelAgreementHours: Int
+  domain: Domain
+  languagePairs: [LanguagePair!]!
+  isDefault: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Jobs
+# ---------------------------------------------------------------------------
+
+"""
+A single translation job covering one source document into one
+target language, with full lifecycle tracking.
+"""
+type TranslationJob {
+  id: ID!
+  name: String!
+  status: JobStatus!
+  service: ServiceType!
+  sourceDocument: SourceDocument!
+  targetLanguage: Language!
+  translator: Translator
+  reviewer: Reviewer
+  workflow: Workflow
+  wordCount: Int!
+  translatedWordCount: Int!
+  leveragedWordCount: Int!
+  tmxMemory: TMXMemory
+  glossary: Glossary
+  dueDate: DateTime
+  startedAt: DateTime
+  completedAt: DateTime
+  deliveredAt: DateTime
+  qualityScore: QualityScore
+  translatedDocuments: [TranslatedDocument!]!
+  project: Project!
+  notes: String
+  metadata: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Projects
+# ---------------------------------------------------------------------------
+
+"""A container grouping one or more translation jobs under a shared brief."""
+type Project {
+  id: ID!
+  name: String!
+  description: String
+  status: ProjectStatus!
+  domain: Domain
+  service: ServiceType!
+  sourceLanguage: Language!
+  targetLanguages: [Language!]!
+  sourceDocuments: [SourceDocument!]!
+  jobs: [TranslationJob!]!
+  workflow: Workflow
+  glossary: Glossary
+  tmxMemories: [TMXMemory!]!
+  totalWordCount: Int!
+  completedWordCount: Int!
+  dueDate: DateTime
+  startedAt: DateTime
+  completedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  tags: [String!]
+  metadata: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Quoting
+# ---------------------------------------------------------------------------
+
+"""Line item in a translation quote."""
+type QuoteLineItem {
+  description: String!
+  language: Language
+  wordCount: Int
+  unitRate: Float!
+  unitType: String!
+  subtotal: Float!
+  currency: String!
+}
+
+"""A price quote generated for a requested translation scope."""
+type Quote {
+  id: ID!
+  status: QuoteStatus!
+  request: QuoteRequest!
+  totalCost: Float!
+  currency: String!
+  lineItems: [QuoteLineItem!]!
+  estimatedTurnaroundHours: Int!
+  validUntil: DateTime!
+  notes: String
+  createdAt: DateTime!
+  acceptedAt: DateTime
+  rejectedAt: DateTime
+}
+
+"""A client request for a translation cost estimate."""
+type QuoteRequest {
+  id: ID!
+  name: String!
+  service: ServiceType!
+  domain: Domain
+  sourceLanguage: Language!
+  targetLanguages: [Language!]!
+  wordCount: Int
+  characterCount: Int
+  fileCount: Int
+  formats: [DocumentFormat!]
+  workflow: Workflow
+  requiredByDate: DateTime
+  notes: String
+  quote: Quote
+  project: Project
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Queries
+# ---------------------------------------------------------------------------
+
+type Query {
+  """Retrieve a project by ID."""
+  project(id: ID!): Project
+
+  """List projects with optional filtering."""
+  projects(
+    status: ProjectStatus
+    domain: Domain
+    sourceLanguageCode: String
+    targetLanguageCode: String
+    limit: Int
+    offset: Int
+  ): [Project!]!
+
+  """Retrieve a translation job by ID."""
+  translationJob(id: ID!): TranslationJob
+
+  """List translation jobs with optional filtering."""
+  translationJobs(
+    projectId: ID
+    status: JobStatus
+    translatorId: ID
+    targetLanguageCode: String
+    limit: Int
+    offset: Int
+  ): [TranslationJob!]!
+
+  """Retrieve a source document by ID."""
+  sourceDocument(id: ID!): SourceDocument
+
+  """Retrieve a translated document by ID."""
+  translatedDocument(id: ID!): TranslatedDocument
+
+  """Retrieve a language by BCP 47 locale code."""
+  language(code: String!): Language
+
+  """List all supported languages."""
+  languages: [Language!]!
+
+  """List all language pairs, optionally filtered by source or target language."""
+  languagePairs(
+    sourceLanguageCode: String
+    targetLanguageCode: String
+  ): [LanguagePair!]!
+
+  """Retrieve a glossary by ID."""
+  glossary(id: ID!): Glossary
+
+  """List glossaries, optionally filtered by domain."""
+  glossaries(domain: Domain): [Glossary!]!
+
+  """Look up a term in a glossary."""
+  glossaryTerm(id: ID!): GlossaryTerm
+
+  """Search glossary terms by source text."""
+  searchGlossaryTerms(
+    sourceTerm: String!
+    sourceLanguageCode: String
+    targetLanguageCode: String
+    glossaryId: ID
+  ): [GlossaryTerm!]!
+
+  """Retrieve a termbase by ID."""
+  termBase(id: ID!): TermBase
+
+  """List available termbases."""
+  termBases: [TermBase!]!
+
+  """Retrieve a TMX translation memory by ID."""
+  tmxMemory(id: ID!): TMXMemory
+
+  """List translation memories, optionally filtered by language pair."""
+  tmxMemories(
+    sourceLanguageCode: String
+    targetLanguageCode: String
+  ): [TMXMemory!]!
+
+  """Search translation memory units by source segment."""
+  searchTMUnits(
+    sourceSegment: String!
+    sourceLanguageCode: String!
+    targetLanguageCode: String!
+    minimumMatchScore: Float
+  ): [TMUnit!]!
+
+  """Retrieve a workflow by ID."""
+  workflow(id: ID!): Workflow
+
+  """List workflows."""
+  workflows(domain: Domain): [Workflow!]!
+
+  """Retrieve a translator by ID."""
+  translator(id: ID!): Translator
+
+  """Retrieve a reviewer by ID."""
+  reviewer(id: ID!): Reviewer
+
+  """Retrieve a quote by ID."""
+  quote(id: ID!): Quote
+
+  """Retrieve a quote request by ID."""
+  quoteRequest(id: ID!): QuoteRequest
+
+  """Retrieve quality scoring for a job or document."""
+  qualityScore(id: ID!): QualityScore
+}
+
+# ---------------------------------------------------------------------------
+# Mutations
+# ---------------------------------------------------------------------------
+
+input CreateProjectInput {
+  name: String!
+  description: String
+  domain: Domain
+  service: ServiceType!
+  sourceLanguageCode: String!
+  targetLanguageCodes: [String!]!
+  workflowId: ID
+  glossaryId: ID
+  dueDate: DateTime
+  tags: [String!]
+  metadata: JSON
+}
+
+input CreateTranslationJobInput {
+  projectId: ID!
+  sourceDocumentId: ID!
+  targetLanguageCode: String!
+  service: ServiceType!
+  workflowId: ID
+  translatorId: ID
+  reviewerId: ID
+  tmxMemoryId: ID
+  glossaryId: ID
+  dueDate: DateTime
+  notes: String
+}
+
+input CreateQuoteRequestInput {
+  name: String!
+  service: ServiceType!
+  domain: Domain
+  sourceLanguageCode: String!
+  targetLanguageCodes: [String!]!
+  wordCount: Int
+  formats: [DocumentFormat!]
+  workflowId: ID
+  requiredByDate: DateTime
+  notes: String
+}
+
+input AddGlossaryTermInput {
+  glossaryId: ID!
+  sourceTerm: String!
+  sourceLanguageCode: String!
+  targetTerm: String!
+  targetLanguageCode: String!
+  definition: String
+  domain: Domain
+  partOfSpeech: String
+  context: String
+  notes: String
+}
+
+type Mutation {
+  """Create a new translation project."""
+  createProject(input: CreateProjectInput!): Project!
+
+  """Update a project's metadata or status."""
+  updateProjectStatus(id: ID!, status: ProjectStatus!): Project!
+
+  """Upload a source document to a project."""
+  uploadSourceDocument(
+    projectId: ID!
+    name: String!
+    format: DocumentFormat!
+    languageCode: String!
+    content: String!
+    tags: [String!]
+  ): SourceDocument!
+
+  """Create a translation job within a project."""
+  createTranslationJob(input: CreateTranslationJobInput!): TranslationJob!
+
+  """Update the status of a translation job."""
+  updateJobStatus(id: ID!, status: JobStatus!, notes: String): TranslationJob!
+
+  """Assign a translator to a job."""
+  assignTranslator(jobId: ID!, translatorId: ID!): TranslationJob!
+
+  """Assign a reviewer to a job."""
+  assignReviewer(jobId: ID!, reviewerId: ID!): TranslationJob!
+
+  """Submit a translated document for a job."""
+  submitTranslatedDocument(
+    jobId: ID!
+    name: String!
+    format: DocumentFormat!
+    content: String!
+  ): TranslatedDocument!
+
+  """Create a quote request for a translation scope."""
+  createQuoteRequest(input: CreateQuoteRequestInput!): QuoteRequest!
+
+  """Accept a quote and convert it to a project."""
+  acceptQuote(quoteId: ID!): Project!
+
+  """Reject a quote."""
+  rejectQuote(quoteId: ID!, reason: String): Quote!
+
+  """Add a term to a glossary."""
+  addGlossaryTerm(input: AddGlossaryTermInput!): GlossaryTerm!
+
+  """Approve a pending glossary term."""
+  approveGlossaryTerm(id: ID!): GlossaryTerm!
+
+  """Submit a quality score for a translated document or job."""
+  submitQualityScore(
+    documentId: ID
+    jobId: ID
+    score: Float!
+    mqmScore: Float
+    bleuScore: Float
+    terScore: Float
+    notes: String
+  ): QualityScore!
+}
+
+# ---------------------------------------------------------------------------
+# Subscriptions
+# ---------------------------------------------------------------------------
+
+type Subscription {
+  """Receive real-time status updates for a translation job."""
+  jobStatusChanged(jobId: ID!): TranslationJob!
+
+  """Receive real-time status updates for all jobs in a project."""
+  projectJobsUpdated(projectId: ID!): TranslationJob!
+
+  """Receive notification when a quote is ready."""
+  quoteReady(quoteRequestId: ID!): Quote!
+
+  """Receive notification when a translated document is delivered."""
+  documentDelivered(projectId: ID!): TranslatedDocument!
+}
