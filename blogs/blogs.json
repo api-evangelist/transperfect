@@ -3,16 +3,12 @@
   "feeds": [
     {
       "source": "https://www.transperfect.com/blog",
-      "feed_url": "https://www.transperfect.com/blog",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://globallink.transperfect.com/products",
-      "error": "HTTPError"
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 1,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 2,
+  "fetched": "2026-06-27T13:17:05Z",
+  "agent_pulled": "2026-06-27"
 }

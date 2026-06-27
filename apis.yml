@@ -47,17 +47,17 @@ apis:
     url: https://www.applanga.com/docs/integration-documentation/api
   - type: CLI
     url: https://www.applanga.com/docs/integration-documentation/cli
-  - type: SDK
+  - type: SDKs
     url: https://github.com/applanga/sdk-ios
-  - type: SDK
+  - type: SDKs
     url: https://github.com/applanga/sdk-android
-  - type: SDK
+  - type: SDKs
     url: https://github.com/applanga/sdk-unity
-  - type: SDK
+  - type: SDKs
     url: https://github.com/applanga/sdk-swiftui
-  - type: SDK
+  - type: SDKs
     url: https://github.com/applanga/applanga-react-native
-  - type: SDK
+  - type: SDKs
     url: https://github.com/applanga/applanga_flutter
   - type: SourceCode
     url: https://github.com/applanga/applanga-cli
