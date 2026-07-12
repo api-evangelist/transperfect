@@ -117,6 +117,8 @@ apis:
   x-language: PHP
   x-status: Legacy
 common:
+- type: DomainSecurity
+  url: security/transperfect-domain-security.yml
 - type: Website
   url: https://www.transperfect.com/
 - type: GlobalLinkSuite
