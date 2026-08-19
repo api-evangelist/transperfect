@@ -36,7 +36,7 @@ tags:
 created: '2026-05-23'
 modified: '2026-05-23'
 url: https://raw.githubusercontent.com/api-evangelist/transperfect/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: transperfect:globallink-strings
   name: GlobalLink Strings API
