@@ -89,8 +89,6 @@ apis:
     url: https://github.com/applanga/Sample-Apps
   - type: Webhooks
     url: https://www.applanga.com/docs/integration-documentation/api
-  - url: graphql/transperfect-graphql.md
-    type: GraphQL
   x-authentication:
     type: Bearer Token
     description: Authorization Bearer apiToken plus X-Personal-Access-Token header
