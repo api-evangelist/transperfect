@@ -1,27 +1,25 @@
-# Kin Score artifact — transperfect — 2026-08-27T132314
+# Kin Score artifact — transperfect — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: transperfect
-  schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T132314
-  composite: 31.2
-  band: thin
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 22.4
+  band: emerging
   facets:
-    discoverability: 53.7
-    contract_quality: 50.0
-    governance: 25.0
-    operational_transparency: 13.2
+    discoverability: 53.6
+    contract_quality: 10.4
+    contract_governance: 23.5
+    operational_transparency: 28.9
     developer_ergonomics: 42.9
-    commercial_clarity: 0.0
-    contract_governance: 25.0
     access_clarity: 0.0
   agent_readiness:
-    score: 17.3
-    band: agent-aware
+    score: 3.9
+    band: human-only
     dimensions:
-      spec_presence: true
+      spec_presence: false
       agentic_access: false
       reversibility_documented: false
       mcp_server: false
@@ -30,7 +28,7 @@ kin_score:
       error_semantics: false
       openapi_examples: false
       rate_limit_signal: false
-      event_surface_described: true
+      event_surface_described: unknown
       agent_skills: false
       well_known_catalog: false
       consent_identity: false
@@ -40,3 +38,9 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 10.8
+    matched_via: fallback

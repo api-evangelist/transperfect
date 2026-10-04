@@ -8,15 +8,21 @@ description: TransPerfect is the world's largest privately held provider of lang
   90% of the Fortune 500.
 type: Index
 deliveryModel:
-  model: unknown
+  model: library
+  license_evidence:
+    not_product:
+    - applanga/applanga-cli
+    - applanga/sample-apps
+    - applanga/setup-applanga-cli
+    - transperfect/globallink
   open_source: unknown
   commercial: false
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  label: Library · distributed through package registries, no callable service
   confidence: low
   source:
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
