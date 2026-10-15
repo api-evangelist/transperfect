@@ -16,3 +16,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: transperfect-contentful-own
+  label: Contentful (own)
+  partner: contentful
+  partner_name: Contentful (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.contentful.com/marketplace/globallink-connect-for-contentful/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
