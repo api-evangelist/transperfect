@@ -28,3 +28,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: transperfect-storyblok-own
+  label: Storyblok (own)
+  partner: storyblok
+  partner_name: Storyblok (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.storyblok.com/apps/external/transperfect
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

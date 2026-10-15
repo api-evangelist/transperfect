@@ -3,6 +3,7 @@ method: searched
 checked:
 - contentful/integrations/contentful-integration-edges.yml
 - okta/integrations/okta-integration-edges.yml
+- storyblok/integrations/storyblok-integration-edges.yml
 source:
 - okta/integrations/okta-integration-edges.yml
 edges:
@@ -40,6 +41,22 @@ edges:
   mirror_of: contentful/integrations/contentful-integration-edges.yml
   apps:
   - GlobalLink for Contentful
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+- partner_name: Storyblok (own)
+  partner: storyblok
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.storyblok.com/apps/external/transperfect
+  mirror_of: storyblok/integrations/storyblok-integration-edges.yml
+  apps:
+  - transperfect
   listing_count: 1
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
