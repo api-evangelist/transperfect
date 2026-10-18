@@ -40,3 +40,29 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: transperfect-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A03P1CU00GP-globallink-portal
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: transperfect-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/YPpNsF5BRnW2v0xrqGclUg
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
