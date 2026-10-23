@@ -8,9 +8,56 @@ checked:
 - zoom/integrations/zoom-integration-edges.yml
 - https://store.servicenow.com/store/app/
 - https://store.servicenow.com/store/sitemap_xml
+- adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+- adobe-experience-manager/integrations/adobe-experience-manager-integration-edges.yml
+- marketo/integrations/marketo-integration-edges.yml
 source:
 - okta/integrations/okta-integration-edges.yml
 edges:
+- partner_name: ServiceNow Store (partner apps)
+  partner: servicenow
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://store.servicenow.com/store/seller/9b319a66dbfd774016d2a345ca961920
+  category: ServiceNow Store partner app / app certification
+  contract_reference:
+    register: ServiceNow Store (store.servicenow.com/store/sitemap_xml -> /store/app/<id> server-rendered pages)
+    standard: ServiceNow Store app certification (ServiceNow Certified App badge)
+    spec_file: null
+    role: servicenow-store-partner
+    registered_name: TransPerfect Translations International, Inc
+    register_id: 9b319a66dbfd774016d2a345ca961920
+    matched_domain: transperfect.com
+    matched_by: domain
+    identity_source: the listing's own seller website link (no lookup)
+    certified_products:
+    - product: ServiceNow Certified App (scoped_app / integration)
+      product_type: scoped_app / integration
+      standard: ServiceNow Store app certification (ServiceNow Certified App badge)
+      lapsed: false
+      products_sample:
+      - GlobalLink AI Spoke
+      - GlobalLink TMS
+      - GlobalLink TMS Spoke
+      releases:
+      - Yokohama
+      - Zurich
+      - Australia
+    products_sample:
+    - GlobalLink AI Spoke
+    - GlobalLink TMS
+    - GlobalLink TMS Spoke
+    signal_note: 'listing alone = standard-participant; certified_products = one entry per Application type the
+      seller holds a ServiceNow Certified App badge for, standard named on each; lapsed: true when none of that
+      type''s certified apps lists either of the two newest release families on the Store; app counts are context,
+      never counted'
+    detected_by: sweep-servicenow-store.py
+    detected: '2026-10-23'
+  detected_by: sweep-servicenow-store.py
+  first_seen: '2026-10-23'
 - partner_name: Okta (own)
   partner: okta
   partner_match: mirror
@@ -98,47 +145,57 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
-- partner_name: ServiceNow Store (partner apps)
-  partner: servicenow
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://store.servicenow.com/store/seller/9b319a66dbfd774016d2a345ca961920
-  category: ServiceNow Store partner app / app certification
-  contract_reference:
-    register: ServiceNow Store (store.servicenow.com/store/sitemap_xml -> /store/app/<id> server-rendered pages)
-    standard: ServiceNow Store app certification (ServiceNow Certified App badge)
-    spec_file: null
-    role: servicenow-store-partner
-    registered_name: TransPerfect Translations International, Inc
-    register_id: 9b319a66dbfd774016d2a345ca961920
-    matched_domain: transperfect.com
-    matched_by: domain
-    identity_source: the listing's own seller website link (no lookup)
-    certified_products:
-    - product: ServiceNow Certified App (scoped_app / integration)
-      product_type: scoped_app / integration
-      standard: ServiceNow Store app certification (ServiceNow Certified App badge)
-      lapsed: false
-      products_sample:
-      - GlobalLink AI Spoke
-      - GlobalLink TMS
-      - GlobalLink TMS Spoke
-      releases:
-      - Yokohama
-      - Zurich
-      - Australia
-    products_sample:
-    - GlobalLink AI Spoke
-    - GlobalLink TMS
-    - GlobalLink TMS Spoke
-    signal_note: 'listing alone = standard-participant; certified_products = one entry per Application type the
-      seller holds a ServiceNow Certified App badge for, standard named on each; lapsed: true when none of that
-      type''s certified apps lists either of the two newest release families on the Store; app counts are context,
-      never counted'
-    detected_by: sweep-servicenow-store.py
-    detected: '2026-10-23'
-  detected_by: sweep-servicenow-store.py
-  first_seen: '2026-10-23'
+- partner_name: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/103755
+  mirror_of: adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+  apps:
+  - GlobalLink for Adobe Commerce
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Commerce)
+- partner_name: Adobe Experience Manager (own)
+  partner: adobe-experience-manager
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/90105
+  mirror_of: adobe-experience-manager/integrations/adobe-experience-manager-integration-edges.yml
+  apps:
+  - GlobalLink for Adobe Experience Manager
+  - GlobalLink for Adobe Experience Manager Plus
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Experience Manager)
+  publisher_verified:
+  - Adobe Exchange verified listing
+- partner_name: Marketo (own)
+  partner: marketo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/103757
+  mirror_of: marketo/integrations/marketo-integration-edges.yml
+  apps:
+  - GlobalLink for Adobe Marketo Engage
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Marketo Engage)
